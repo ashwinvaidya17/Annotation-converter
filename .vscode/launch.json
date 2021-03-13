@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "run.py",
             "console": "integratedTerminal",
-            "args": ["--input", "D:\\Datasets\\No variation\\apple", "--output_format", "coco", "--output_dir", "D:\\Datasets\\coco_converted"]
+            "args": ["--input", "D:\\Datasets\\No variation\\apple", "--output_format", "simplified_detection", "--output_dir", "D:\\Datasets\\simplified_detection"]
         }
     ]
 }

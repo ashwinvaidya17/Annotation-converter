@@ -8,5 +8,8 @@ Currently supports only single object detection.
 
 # Supported Formats:
 
-- [ ] COCO
+- [x] COCO
+
 - [ ] VOC
+
+- [x] Simplified Detection Annotation Format
