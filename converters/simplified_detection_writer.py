@@ -62,7 +62,7 @@ class SimplifiedDetectionWriter:
                 ) as ann_file:
                     entries = unity_annotations.get_annotation_entry(annotation)
                     for entry in entries:
-                        ann_file.write(f"{entry['category_id']} {' '.join([str(num) for num in entry['bbox']])}")
+                        ann_file.write(f"{entry['category_id']} {' '.join([str(num) for num in entry['bbox']])}\n")
 
-                csv_file.write(f"{annotation_counter:0{precision}}.png, {annotation_counter:0{precision}}.txt")
+                csv_file.write(f"{annotation_counter:0{precision}}.png,{annotation_counter:0{precision}}.txt\n")
                 annotation_counter += 1

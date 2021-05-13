@@ -1,13 +1,14 @@
 """Common functions for handling Unity Annotations"""
 
-from typing import Dict, Tuple
-import cv2
-import os
 import glob
 import json
+import os
+from typing import Dict, List, Tuple
+
+import cv2
 
 
-def load_unity_annotations(data_path):
+def load_unity_annotations(data_path)->List:
     annotations = []
 
     annotation_files = glob.glob(os.path.join(data_path, "Dataset*", "captures*.json"))
@@ -19,13 +20,13 @@ def load_unity_annotations(data_path):
     return annotations
 
 
-def get_image_dims(self, annotations: Dict) -> Tuple:
+def get_image_dims(input_dir: str, annotations: List[Dict]) -> Tuple:
     """gets the size of the image. The assumption is that all the images are of the same size
     
     :return: Tuple(width, height, channels)
     """
     img_path = annotations[0]["filename"]
-    img = cv2.imread(os.path.join(self.input_dir, img_path))
+    img = cv2.imread(os.path.join(input_dir, img_path))
     return img.shape
 
 

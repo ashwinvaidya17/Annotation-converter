@@ -1,8 +1,8 @@
 import argparse
-from converters.simplified_detection_writer import SimplifiedDetectionWriter
-
 
 from converters.coco_writer import COCOWriter
+from converters.simplified_detection_writer import SimplifiedDetectionWriter
+from converters.voc_writer import VOCWriter
 
 
 def converter(args):
@@ -12,6 +12,8 @@ def converter(args):
         writer = COCOWriter(args.input_dir, args.output_dir)
     elif output_format == "simplified_detection":
         writer = SimplifiedDetectionWriter(args.input_dir, args.output_dir)
+    elif output_format == "voc":
+        writer = VOCWriter(args.input_dir, args.output_dir)
     else:
         raise NotImplementedError(f"Output format {output_format} not supported yet")
 

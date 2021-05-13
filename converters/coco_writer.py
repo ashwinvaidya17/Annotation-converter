@@ -1,8 +1,8 @@
 import json
-from typing import List, Tuple
 import os
 from datetime import datetime
-import cv2
+from typing import List, Tuple
+
 from converters import unity_annotations
 
 
@@ -17,7 +17,7 @@ class COCOWriter:
         self.unity_annotations = unity_annotations.load_unity_annotations(self.input_dir)
         self.output_dir = output_dir
         self.splits = splits
-        self.img_height, self.img_width, _ = unity_annotations.get_image_dims(self.unity_annotations)
+        self.img_height, self.img_width, _ = unity_annotations.get_image_dims(self.input_dir, self.unity_annotations)
 
     def get_info_field(self):
         header = {}

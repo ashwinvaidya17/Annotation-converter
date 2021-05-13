@@ -10,6 +10,10 @@ Currently supports only single object detection.
 
 - [x] COCO
 
-- [ ] VOC
+- [x] VOC (supports multiple objects as well)
 
 - [x] Simplified Detection Annotation Format
+
+# Limitations
+
+Does not support segmentation yet.
