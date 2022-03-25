@@ -21,7 +21,7 @@ img_num.jpg, label_num.txt
 """
 
 
-from converters import unity_annotations
+from converters.unity_perception_converters import unity_annotations
 import os
 from tqdm import tqdm
 from PIL import Image

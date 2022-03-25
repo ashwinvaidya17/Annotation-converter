@@ -4,7 +4,7 @@ from typing import List
 from PIL import Image
 from tqdm import tqdm
 
-from converters import unity_annotations
+from converters.unity_perception_converters import unity_annotations
 
 
 class VOCWriter:
@@ -20,12 +20,10 @@ class VOCWriter:
         self.splits = splits
         self.img_height, self.img_width, _ = unity_annotations.get_image_dims(self.input_dir, self.unity_annotations)
 
-
     def write(self):
         """write the output dataset
         """
-        
-        
+
         print(f"Found dataset of size {len(self.unity_annotations)}")
 
         os.makedirs(os.path.join(self.output_dir, "Annotations"), exist_ok=True)
@@ -56,7 +54,7 @@ class VOCWriter:
 
             for annotation in tqdm(annotations):
                 img = Image.open(os.path.join(self.input_dir, annotation["filename"]))
-                filename = os.path.split(annotation['filename'])[-1].split('.')[0]
+                filename = os.path.split(annotation["filename"])[-1].split(".")[0]
                 img = img.convert("RGB")
                 # save image as jpeg. Not really necessary.
                 img.save(os.path.join(self.output_dir, "JPEGImages", f"{filename}.jpg"), "JPEG")
@@ -75,8 +73,8 @@ class VOCWriter:
                         </size>
                         """
                 categories = set()
-                for obj in annotation['annotations'][0]['values']:
-                    categories.add(obj['label_name'])
+                for obj in annotation["annotations"][0]["values"]:
+                    categories.add(obj["label_name"])
                     data += f"""<object>
                                     <name>{obj['label_name']}</name>
                                     <bndbox>
@@ -90,10 +88,12 @@ class VOCWriter:
 
                 data += "</annotation>"
                 # write to annotation file
-                with open(os.path.join(self.output_dir, 'Annotations', filename+'.xml'), 'w') as annf:
+                with open(os.path.join(self.output_dir, "Annotations", filename + ".xml"), "w") as annf:
                     annf.write(data)
-                
+
                 # write to category file
                 for category in categories:
-                    with open(os.path.join(self.output_dir, 'ImageSets', 'Main', f"{category}_{split}.txt"), 'a') as imgsetf:
+                    with open(
+                        os.path.join(self.output_dir, "ImageSets", "Main", f"{category}_{split}.txt"), "a"
+                    ) as imgsetf:
                         imgsetf.write(f"{filename} 1\n")

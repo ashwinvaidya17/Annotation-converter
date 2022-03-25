@@ -10,7 +10,16 @@
             "request": "launch",
             "program": "run.py",
             "console": "integratedTerminal",
-            "args": ["--input", "D:\\Datasets\\plain_background", "--output_format", "voc", "--output_dir", "D:\\Datasets\\voc"]
+            "args": [
+                "--input_dir",
+                "C:\\Users\\ashwinva\\Documents\\Datasets\\EgocentricFood",
+                "--input_format",
+                "egocentric_food",
+                "--output_format",
+                "voc",
+                "--output_dir",
+                "C:\\Users\\ashwinva\\Documents\\Datasets\\voc_egocentric"
+            ]
         }
     ]
 }

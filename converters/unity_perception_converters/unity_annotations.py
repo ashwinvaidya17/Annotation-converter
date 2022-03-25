@@ -8,7 +8,7 @@ from typing import Dict, List, Tuple
 import cv2
 
 
-def load_unity_annotations(data_path)->List:
+def load_unity_annotations(data_path) -> List:
     annotations = []
 
     annotation_files = glob.glob(os.path.join(data_path, "Dataset*", "captures*.json"))
@@ -56,4 +56,3 @@ def get_annotation_entry(annotation: Dict):
 
         entries.append(entry)
     return entries
-

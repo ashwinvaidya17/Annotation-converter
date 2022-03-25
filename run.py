@@ -1,32 +1,20 @@
 import argparse
-
-from converters.coco_writer import COCOWriter
-from converters.simplified_detection_writer import SimplifiedDetectionWriter
-from converters.voc_writer import VOCWriter
-
-
-def converter(args):
-
-    output_format = args.output_format
-    if output_format == "coco":
-        writer = COCOWriter(args.input_dir, args.output_dir)
-    elif output_format == "simplified_detection":
-        writer = SimplifiedDetectionWriter(args.input_dir, args.output_dir)
-    elif output_format == "voc":
-        writer = VOCWriter(args.input_dir, args.output_dir)
-    else:
-        raise NotImplementedError(f"Output format {output_format} not supported yet")
-
-    writer.write()
+from converters import convert
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Convert data from Unity annotation to selected annotation format.")
-    parser.add_argument("--input_dir", type=str, help="Path to unity dataset", required=True)
+    parser.add_argument("--input_dir", type=str, help="Path to dataset", required=True)
+    parser.add_argument(
+        "--input_format",
+        type=str,
+        help="Format of the input dataset. Supported Formats are ['egocentric_food', 'unity_perception']",
+        default="unity_perception",
+    )
     parser.add_argument(
         "--output_format", type=str, help="Select between [coco, voc, simplified_detection]", required=True
     )
     parser.add_argument("--output_dir", type=str, help="Folder to save the annotations.", default="./")
 
     args = parser.parse_args()
-    converter(args)
+    convert(args)

@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from typing import List, Tuple
 
-from converters import unity_annotations
+from converters.unity_perception_converters import unity_annotations
 
 
 class COCOWriter:
@@ -66,4 +66,3 @@ class COCOWriter:
 
             with open(os.path.join(self.output_dir, "annotations", f"{split}.json"), "w") as f:
                 json.dump(data, f)
-
